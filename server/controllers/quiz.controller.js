@@ -2,7 +2,7 @@ import Quiz from "../models/quiz.model.js";
 
 export const addQuiz = async (req, res) => {
   const { title, description, image } = req.body;
-
+  console.log(req.body);
   try {
     if (!title || !description || !image) {
       return res.status(404).json({ message: "invalid data" });

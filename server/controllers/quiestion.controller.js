@@ -2,7 +2,6 @@ import Question from "../models/question.model.js";
 
 export const addQuestion = async (req, res) => {
   const { quizId, options, question, correctAnswer } = req.body;
-  console.log(req.body);
 
   try {
     if (!quizId || !options || !correctAnswer || !question) {
