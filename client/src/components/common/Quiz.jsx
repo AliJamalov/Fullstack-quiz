@@ -20,8 +20,8 @@ const Quiz = ({
 
   return (
     <div
-      className={`border relative border-gray-300 rounded-lg ${
-        isAdminPage ? "h-[450px]" : "h-[350px]"
+      className={`border border-gray-300 rounded-lg ${
+        isAdminPage ? "h-[490px]" : "h-[350px]"
       } p-4 shadow-lg max-w-xs mx-auto`}
     >
       {isAdminPage && (
@@ -33,33 +33,33 @@ const Quiz = ({
           )}{" "}
         </div>
       )}
-      <img src={image} alt={title} className="w-full h-[150px] object-cover rounded-lg" />
+      <img src={image} alt={title} className="w-full h-[150px] object-contain" />
       <div className="pt-4">
         <h3 className="text-xl font-semibold text-white">{title}</h3>
         <p className="text-gray-600 mt-2">{description}</p>
       </div>
 
       {isAdminPage && (
-        <button
-          onClick={() => {
-            toggleQuestionModal();
-            setQuizId(id);
-          }}
-          className="bg-green-500 absolute bottom-3 right-4 text-white rounded p-2 cursor-pointer mt-2"
-        >
-          Add questions
-        </button>
-      )}
-      {isAdminPage && (
-        <button
-          onClick={() => {
-            toggleQuizQuestions();
-            setQuizId(id);
-          }}
-          className="bg-black absolute bottom-3 left-4 text-white rounded p-2 cursor-pointer mt-2"
-        >
-          See questions
-        </button>
+        <div className="flex flex-col gap-2 mt-3">
+          <button
+            onClick={() => {
+              toggleQuizQuestions();
+              setQuizId(id);
+            }}
+            className="bg-black text-white rounded p-2 cursor-pointer"
+          >
+            See questions
+          </button>
+          <button
+            onClick={() => {
+              toggleQuestionModal();
+              setQuizId(id);
+            }}
+            className="bg-green-500 bottom-3 right-4 text-white rounded p-2 cursor-pointer"
+          >
+            Add questions
+          </button>
+        </div>
       )}
     </div>
   );

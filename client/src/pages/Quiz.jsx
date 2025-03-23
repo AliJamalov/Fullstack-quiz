@@ -69,6 +69,7 @@ const Quiz = () => {
     } else {
       setIsQuizEnd(true);
       saveResultToDB();
+      checkSelectedOption(option);
     }
   };
 

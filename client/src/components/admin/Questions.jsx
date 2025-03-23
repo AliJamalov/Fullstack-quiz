@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../utils/axios";
+import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
 
-const Questions = ({ toggleQuizQuestions, quizId }) => {
+const Questions = ({ toggleQuizQuestions, quizId, setQuestionId, toggleQuestionModal }) => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -17,6 +20,17 @@ const Questions = ({ toggleQuizQuestions, quizId }) => {
     }
   };
 
+  const handleDeleteQuestion = async (id) => {
+    try {
+      const deleteConfirm = window.confirm("are you sure?");
+      if (!deleteConfirm) return;
+      await axiosInstance.delete(`/questions/${id}`);
+      fetchQuizQuestions();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchQuizQuestions();
   }, []);
@@ -24,9 +38,9 @@ const Questions = ({ toggleQuizQuestions, quizId }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm p-4">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md max-h-[500px] overflow-y-scroll">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold mb-4">Quiz Questions</h2>
-          <p className="text-lg font-medium mb-4">Questions: {questions.length}</p>
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-lg font-medium">Questions: {questions.length}</p>
+          <IoClose onClick={toggleQuizQuestions} size={25} className="cursor-pointer" />
         </div>
 
         {loading ? (
@@ -47,6 +61,24 @@ const Questions = ({ toggleQuizQuestions, quizId }) => {
                   <p className="mt-2 text-sm text-green-600">
                     ✅ Correct Answer: <strong>{question.correctAnswer}</strong>
                   </p>
+                  <div className="flex items-center justify-end gap-6 mt-3">
+                    <CiEdit
+                      onClick={() => {
+                        setQuestionId(question._id);
+                        toggleQuestionModal();
+                        toggleQuizQuestions();
+                      }}
+                      color="blue"
+                      size={25}
+                      className="cursor-pointer"
+                    />
+                    <MdDelete
+                      onClick={() => handleDeleteQuestion(question._id)}
+                      color="red"
+                      size={25}
+                      className="cursor-pointer"
+                    />
+                  </div>
                 </div>
               ))
             ) : (

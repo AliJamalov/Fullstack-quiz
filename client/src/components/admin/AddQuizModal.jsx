@@ -57,7 +57,7 @@ const AddQuizModal = ({ toggleAddModal, fetchQuizes }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm px-[20px]">
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl shadow-lg w-96">
         <h2 className="text-xl font-semibold mb-4">Add quiz</h2>
         {/* Title */}

@@ -16,6 +16,7 @@ const Admin = () => {
   const [loading, setLoading] = useState(false);
   const [deletLoading, setDeleteLoading] = useState(false);
   const [quizId, setQuizId] = useState(null);
+  const [questionId, setQuestionId] = useState(null);
 
   const fetchQuizes = async () => {
     setLoading(true);
@@ -79,10 +80,24 @@ const Admin = () => {
       {isOpenAddModal && <AddQuizModal fetchQuizes={fetchQuizes} toggleAddModal={toggleAddModal} />}
 
       {/* Add question modal */}
-      {isOpenQuestionModal && <AddQuestionModal quizId={quizId} toggleQuestionModal={toggleQuestionModal} />}
+      {isOpenQuestionModal && (
+        <AddQuestionModal
+          setQuestionId={setQuestionId}
+          questionId={questionId}
+          quizId={quizId}
+          toggleQuestionModal={toggleQuestionModal}
+        />
+      )}
 
       {/* Quiz questions */}
-      {isOpenQuestions && <Questions quizId={quizId} toggleQuizQuestions={toggleQuizQuestions} />}
+      {isOpenQuestions && (
+        <Questions
+          toggleQuestionModal={toggleQuestionModal}
+          setQuestionId={setQuestionId}
+          quizId={quizId}
+          toggleQuizQuestions={toggleQuizQuestions}
+        />
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
         {quizes?.map((quiz) => (
