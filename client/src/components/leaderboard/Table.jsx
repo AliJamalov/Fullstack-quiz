@@ -1,6 +1,9 @@
 import React from "react";
+import { useAuthStore } from "../../store/authStore";
 
 const Table = ({ leaderboard }) => {
+  const { user } = useAuthStore();
+
   return (
     <div>
       <div className="overflow-x-auto rounded-lg shadow-lg">
@@ -14,7 +17,7 @@ const Table = ({ leaderboard }) => {
           </thead>
           <tbody>
             {leaderboard.map((entry, index) => (
-              <tr key={entry._id || index}>
+              <tr className={`${user?._id === entry?.userId?._id ? "bg-violet-800" : null}`} key={entry._id || index}>
                 <td className="p-4 border-b border-blue-700 text-center font-bold">
                   <span className="inline-flex items-center">
                     {index === 0 || index === 1 || index === 2 ? null : index + 1}

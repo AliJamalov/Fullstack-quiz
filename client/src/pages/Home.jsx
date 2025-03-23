@@ -38,7 +38,7 @@ const Home = () => {
           </Link>
         )}
         <Link to={"/quiz-rankings"} className="flex items-center gap-2">
-          <p className="font-medium text-md text-white">see quiz rankings</p>
+          <p className="font-medium text-md text-white">see user rankings</p>
           <PiRankingFill size={30} color="yellow" />
         </Link>
         <MdLogout onClick={logout} color="white" size={25} className="cursor-pointer" />
