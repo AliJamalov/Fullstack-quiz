@@ -32,7 +32,7 @@ export const getQuestions = async (req, res) => {
 
     const questions = await Question.find({ quizId });
 
-    if (!questions) {
+    if (questions.length === 0) {
       return res.status(404).json({ message: "questions not found" });
     }
 

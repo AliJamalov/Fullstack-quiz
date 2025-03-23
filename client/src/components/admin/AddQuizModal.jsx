@@ -80,7 +80,7 @@ const AddQuizModal = ({ toggleAddModal, fetchQuizes }) => {
           <img
             src={prevImage}
             onChange={handleImageChange}
-            className="rounded mb-3 w-[80px] h-[80px]"
+            className="rounded mb-3 w-[100px] h-[100px]"
             alt="prev-image"
           />
         )}{" "}

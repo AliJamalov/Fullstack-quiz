@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post("/", protectRoute, addResult);
 
-router.get("/", getResults);
+router.get("/:quizId", getResults);
 
 export default router;

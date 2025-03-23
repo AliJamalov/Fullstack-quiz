@@ -6,6 +6,7 @@ import AddQuestionModal from "../components/admin/AddQuestionModal";
 import Questions from "../components/admin/Questions";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Admin = () => {
   const [isOpenAddModal, setIsOpenAddModal] = useState(false);
@@ -13,6 +14,7 @@ const Admin = () => {
   const [isOpenQuestions, setIsOpenQuestions] = useState(false);
   const [quizes, setQuizes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [deletLoading, setDeleteLoading] = useState(false);
   const [quizId, setQuizId] = useState(null);
 
   const fetchQuizes = async () => {
@@ -24,6 +26,23 @@ const Admin = () => {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDeleteQuiz = async (id) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this quiz?");
+    if (!isConfirmed) return;
+
+    setDeleteLoading(true);
+    try {
+      await axiosInstance.delete(`/quizes/${id}`);
+      toast.success("Quiz successfully deleted!");
+      fetchQuizes();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to delete quiz.");
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
@@ -76,6 +95,8 @@ const Admin = () => {
               title={quiz.title}
               id={quiz._id}
               setQuizId={setQuizId}
+              handleDeleteQuiz={handleDeleteQuiz}
+              deletLoading={deletLoading}
             />
           </div>
         ))}

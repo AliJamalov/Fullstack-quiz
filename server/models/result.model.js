@@ -6,7 +6,7 @@ const resultSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  correctAnswers: {
+  score: {
     type: Number,
     default: 0,
     required: true,

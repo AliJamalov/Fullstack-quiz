@@ -4,6 +4,9 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Admin from "./pages/Admin";
+import Quiz from "./pages/Quiz";
+import Leaderboard from "./pages/Leaderboard";
+import QuizRankings from "./pages/QuizRankings";
 import { useAuthStore } from "./store/authStore";
 import { ImSpinner9 } from "react-icons/im";
 import { Toaster } from "react-hot-toast";
@@ -30,6 +33,9 @@ const App = () => {
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/quiz/:quizId" element={<Quiz />} />
+        <Route path="/quiz-rankings" element={<QuizRankings />} />
+        <Route path="/leaderboard/:quizId" element={<Leaderboard />} />
       </Routes>
       <Toaster />
     </div>
