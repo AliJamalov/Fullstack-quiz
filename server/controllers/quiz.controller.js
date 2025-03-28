@@ -3,9 +3,9 @@ import Question from "../models/question.model.js";
 import cloudinary from "../lib/cloudinary.js";
 
 export const addQuiz = async (req, res) => {
-  const { title, description, image } = req.body;
+  const { title, description, image, hero, level } = req.body;
   try {
-    if (!title || !description || !image) {
+    if (!title || !description || !image || !hero || !level) {
       return res.status(404).json({ message: "invalid data" });
     }
 
@@ -13,6 +13,8 @@ export const addQuiz = async (req, res) => {
       title,
       description,
       image,
+      hero,
+      level,
     });
 
     await createdQuiz.save();
@@ -73,7 +75,7 @@ export const getQuizById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const quiz = await Quiz.findById(id);
+    const quiz = await Quiz.findById(id).populate("hero", "name image health attack defense level");
 
     if (!quiz) {
       return res.status(404).json({ message: "quiz not found" });

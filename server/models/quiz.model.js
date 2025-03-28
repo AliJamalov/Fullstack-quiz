@@ -13,6 +13,15 @@ const quizSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  level: {
+    type: Number,
+    required: true,
+  },
+  hero: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Hero",
+    required: true,
+  },
 });
 
 const Quiz = mongoose.model("Quiz", quizSchema);

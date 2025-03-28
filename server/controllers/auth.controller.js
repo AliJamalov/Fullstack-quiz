@@ -7,7 +7,11 @@ export const signup = async (req, res) => {
 
   try {
     if (!username || !password) {
-      return res.status(404).json({ message: "all fields are required" });
+      return res.status(400).json({ message: "all fields are required" });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({ message: "Password should be at least 6 characters long" });
     }
 
     const user = await User.findOne({ username });
@@ -25,11 +29,21 @@ export const signup = async (req, res) => {
     generateTokenAndSetCookie(newUser._id, res);
 
     return res.status(201).json({
-      message: "User created successfuly!",
+      message: "User created successfully!",
       user: {
         _id: newUser._id,
         username: newUser.username,
         role: newUser.role,
+        coins: newUser.coins,
+        experiences: newUser.experiences,
+        level: newUser.level,
+        rank: newUser.rank,
+        quizProgress: newUser.quizProgress,
+        friends: newUser.friends,
+        deck: newUser.deck,
+        cards: newUser.cards,
+        losses: newUser.losses,
+        wins: newUser.wins,
       },
     });
   } catch (error) {
@@ -63,6 +77,16 @@ export const login = async (req, res) => {
         _id: user._id,
         username: user.username,
         role: user.role,
+        coins: user.coins,
+        experiences: user.experiences,
+        level: user.level,
+        rank: user.rank,
+        quizProgress: user.quizProgress,
+        friends: user.friends,
+        deck: user.deck,
+        cards: user.cards,
+        losses: user.losses,
+        wins: user.wins,
       },
     });
   } catch (error) {

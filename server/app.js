@@ -9,6 +9,8 @@ import authRouter from "./routes/auth.routes.js";
 import questionRouter from "./routes/question.routes.js";
 import quizRouter from "./routes/quiz.routes.js";
 import resultRouter from "./routes/results.routes.js";
+import userRouter from "./routes/user.routes.js";
+import heroRouter from "./routes/hero.routes.js";
 
 const app = express();
 
@@ -28,6 +30,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/questions", questionRouter);
 app.use("/api/quizes", quizRouter);
 app.use("/api/results", resultRouter);
+app.use("/api/users", userRouter);
+app.use("/api/heroes", heroRouter);
 
 dotenv.config();
 

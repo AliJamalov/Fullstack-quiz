@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AddQuizModal from "../components/admin/AddQuizModal";
 import { axiosInstance } from "../utils/axios";
-import Quiz from "../components/common/Quiz";
+import Quiz from "../components/admin/Quiz";
 import AddQuestionModal from "../components/admin/AddQuestionModal";
 import Questions from "../components/admin/Questions";
 import { FaHome } from "react-icons/fa";

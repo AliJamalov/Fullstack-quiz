@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { RiAdminFill } from "react-icons/ri";
-import { PiRankingFill } from "react-icons/pi";
-import { MdLogout } from "react-icons/md";
-import { useAuthStore } from "../store/authStore";
 import { axiosInstance } from "../utils/axios";
-import Quiz from "../components/common/Quiz";
+import Quiz from "../components/home/Quiz";
+import Topbar from "../components/home/Topbar";
 
 const Home = () => {
-  const { user, logout } = useAuthStore();
-
   const [quizes, setQuizes] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -30,29 +24,28 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="max-w-[1440px] mx-auto px-[50px] py-[30px]">
-      <div className="flex justify-between items-center">
-        {user?.role === "admin" && (
-          <Link to={"/admin"}>
-            <RiAdminFill color="purple" size={30} />
-          </Link>
-        )}
-        <Link to={"/quiz-rankings"} className="flex items-center gap-2">
-          <p className="font-medium text-md text-white">see user rankings</p>
-          <PiRankingFill size={30} color="yellow" />
-        </Link>
-        <MdLogout onClick={logout} color="white" size={25} className="cursor-pointer" />
-      </div>
+    <div
+      className="max-w-[1440px] mx-auto px-[50px] pt-[20px] bg-cover bg-center min-h-screen"
+      style={{ backgroundImage: "url('/images/castle-bg.svg')" }}
+    >
+      <Topbar />
       <div>
-        <h1 className="text-2xl font-bold text-white mb-4 mt-2">Welcome to the Quiztopia</h1>
-        <p className="text-sm font-medium text-white">Pick a subject to get started</p>
-        {loading && <p className="text-lg font-medium text-white text-center">Loading...</p>}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
+        <h1 className="text-2xl font-bold text-yellow-500 my-4">Мифическая Арена</h1>
+        <p className="text-md font-medium text-yellow-500 text-center w-full md:w-[500px] bg-white p-2 rounded-md">
+          Выберите викторину, чтобы начать путешествие в мир мифов
+        </p>
+        {loading && <p className="text-lg font-medium text-white text-center">Загрузка...</p>}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5">
           {quizes?.map((quiz) => (
             <div key={quiz._id}>
-              <Link to={`/quiz/${quiz._id}`}>
-                <Quiz title={quiz?.title} description={quiz?.description} image={quiz?.image} />
-              </Link>
+              <Quiz
+                key={quiz._id}
+                quizId={quiz._id}
+                image={quiz.image}
+                title={quiz.title}
+                description={quiz.description}
+                level={quiz.level}
+              />
             </div>
           ))}
         </div>

@@ -1,15 +1,22 @@
 import React from "react";
 
 const Options = ({ options, nextQuestion }) => {
+  const generateABCD = (index) => {
+    if (index === 0) return "A)";
+    if (index === 1) return "B)";
+    if (index === 2) return "C)";
+    if (index === 3) return "D)";
+  };
+
   return (
     <div className="text-white">
       {options?.map((option, index) => (
         <ul key={index} className="flex flex-col p-2 mt-4">
           <li
             onClick={() => nextQuestion(option)}
-            className="bg-violet-600 px-2 py-3 rounded-md min-w-[300px] md:min-w-[400px] cursor-pointer hover:bg-violet-700"
+            className="bg-gray-600 px-2 py-3 rounded-md min-w-[300px] md:min-w-[400px] cursor-pointer hover:bg-gray-700"
           >
-            <span className="text-yellow-400">{index + 1}.</span> {option}
+            <span className="text-yellow-400">{generateABCD(index)} </span> {option}
           </li>
         </ul>
       ))}

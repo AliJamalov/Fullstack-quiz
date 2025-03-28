@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { axiosInstance } from "../utils/axios";
 import Table from "../components/leaderboard/Table";
 
 const Leaderboard = () => {
-  const { quizId } = useParams();
-
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(false);
 

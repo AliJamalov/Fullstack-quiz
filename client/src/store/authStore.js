@@ -58,4 +58,13 @@ export const useAuthStore = create((set) => ({
       set({ checkingAuthLoading: false });
     }
   },
+
+  updateGameData: (newData) => {
+    set((state) => ({
+      user: {
+        ...state.user,
+        ...newData,
+      },
+    }));
+  },
 }));
