@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../components/common/Hero";
+import Deck from "../components/cards/Deck";
 import { axiosInstance } from "../utils/axios";
+import { GrCheckboxSelected } from "react-icons/gr";
 
 const Cards = () => {
   const [heroes, setHeroes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isShowDescription, setIsShowDescription] = useState(false);
   const [selectedHeroDescription, setSelectedHeroDescription] = useState("");
+  const [selectedHero, setSelectedHero] = useState(null);
 
   const fetchUserCards = async () => {
     setLoading(true);
@@ -29,16 +32,29 @@ const Cards = () => {
     setIsShowDescription(!isShowDescription);
   };
 
+  const toggleSelectHero = (hero) => {
+    if (selectedHero !== null && selectedHero._id === hero._id) {
+      setSelectedHero(null);
+    } else {
+      setSelectedHero(hero);
+    }
+  };
+
   return (
-    <div className="max-w-[1440px] mx-auto px-[50px] py-[30px]">
+    <div className="max-w-[1440px] mx-auto px-[50px] pt-[30px] pb-[100px] sm:pb-0">
       <h1 className="text-center font-semibold text-lg">Твои герои</h1>
       {loading && <p className="text-center text-md font-semibold mt-5">Загрузка...</p>}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-[20px]">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3 mt-[20px]">
         {!loading && heroes.length === 0 ? (
           <p className="text-md font-semibold">У вас еще нет героев</p>
         ) : (
           heroes?.map((hero, index) => (
-            <div key={index} className="cursor-pointer" onClick={() => toggleDescription(hero.description)}>
+            <div key={index} onClick={() => toggleSelectHero(hero)} className="cursor-pointer">
+              {selectedHero?._id === hero._id && (
+                <div className="flex justify-center mb-2">
+                  <GrCheckboxSelected color="green" size={25} />
+                </div>
+              )}
               <Hero
                 name={hero.name}
                 image={hero.image}
@@ -51,6 +67,9 @@ const Cards = () => {
                 race={hero.race}
                 rarity={hero.rarity}
               />
+              <p onClick={() => toggleDescription(hero.description)} className="mt-2 text-green-500 text-center">
+                Прочитать описание
+              </p>
             </div>
           ))
         )}
@@ -68,6 +87,7 @@ const Cards = () => {
           </div>
         </div>
       )}
+      <Deck selectedHero={selectedHero} setSelectedHero={setSelectedHero} />
     </div>
   );
 };

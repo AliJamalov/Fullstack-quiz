@@ -35,7 +35,7 @@ const Home = () => {
           Выберите викторину, чтобы начать путешествие в мир мифов
         </p>
         {loading && <p className="text-lg font-medium text-white text-center">Загрузка...</p>}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5 pb-[120px] sm:pb-0">
           {quizes?.map((quiz) => (
             <div key={quiz._id}>
               <Quiz

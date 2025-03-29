@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -14,6 +14,10 @@ import { ImSpinner9 } from "react-icons/im";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
+  const location = useLocation();
+
+  const pathsToHide = ["/quiz"];
+
   const { checkAuth, checkingAuthLoading, user } = useAuthStore();
 
   useEffect(() => {
@@ -28,6 +32,8 @@ const App = () => {
     );
   }
 
+  const hideNavbar = pathsToHide.some((path) => location.pathname.startsWith(path));
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-400 to-gray-600">
       <Routes>
@@ -40,7 +46,7 @@ const App = () => {
         <Route path="/cards" element={<Cards />} />
         <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
       </Routes>
-      <div className="sm:hidden">{user && <Navbar />}</div>
+      {!hideNavbar && <div className="sm:hidden">{user && <Navbar />}</div>}
       <Toaster />
     </div>
   );

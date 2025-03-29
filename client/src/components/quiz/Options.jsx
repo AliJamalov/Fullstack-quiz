@@ -14,7 +14,7 @@ const Options = ({ options, nextQuestion }) => {
         <ul key={index} className="flex flex-col p-2 mt-4">
           <li
             onClick={() => nextQuestion(option)}
-            className="bg-gray-600 px-2 py-3 rounded-md min-w-[300px] md:min-w-[400px] cursor-pointer hover:bg-gray-700"
+            className="bg-stone-500 px-2 py-3 rounded-md min-w-[300px] md:min-w-[400px] cursor-pointer"
           >
             <span className="text-yellow-400">{generateABCD(index)} </span> {option}
           </li>

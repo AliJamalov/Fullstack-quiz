@@ -32,7 +32,7 @@ const Navbar = () => {
           <span className="text-sm">Store</span>
         </NavLink>
         <NavLink
-          to="/settings"
+          to="/cards"
           className={({ isActive }) =>
             `inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ${
               isActive ? "text-blue-600 dark:text-blue-500" : "text-gray-500 dark:text-gray-400"

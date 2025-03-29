@@ -10,7 +10,6 @@ import Hero from "../components/common/Hero";
 import Result from "../components/quiz/Result";
 import { useAuthStore } from "../store/authStore";
 import { ImSpinner9 } from "react-icons/im";
-import "../animations/Quiz.css";
 
 const Quiz = () => {
   const { quizId } = useParams();
@@ -32,9 +31,6 @@ const Quiz = () => {
   const [level, setLevel] = useState(0);
   const [isUserHasHero, setIsUserHasHero] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [backgroundLoaded, setBackgroundLoaded] = useState(false);
-
-  const bgImage = "/images/quiz-bg.svg";
 
   const fetchQuizById = async () => {
     setLoading(true);
@@ -136,21 +132,8 @@ const Quiz = () => {
     }
   }, [isQuizEnd]);
 
-  useEffect(() => {
-    if (!loading && !backgroundLoaded) {
-      const img = new Image();
-      img.src = bgImage;
-      img.onload = () => setBackgroundLoaded(true);
-    }
-  }, [loading, backgroundLoaded]);
-
   return (
-    <div
-      className={`max-w-[1440px] mx-auto px-[50px] pt-[10px] flex justify-center bg-cover bg-center min-h-screen ${
-        backgroundLoaded ? "fade-in" : "opacity-0"
-      }`}
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
+    <div className="max-w-[1440px] mx-auto px-[50px] pt-[10px] flex justify-center min-h-screen">
       {isQuizStarted && !isQuizEnd && curQuestion && (
         <div className="flex flex-col items-center">
           <QuizTitleAndImage title={quizTitle} image={quizImage} />

@@ -38,7 +38,6 @@ const Hero = ({ name, image, level, health, attack, defense, heroClass, race, ra
         <p className="bg-blue-600 px-1 py-0.5 rounded-md font-bold">ATK: {attack}</p>
         <p className="bg-green-600 px-1 py-0.5 rounded-md font-bold">DEF: {defense}</p>
       </div>
-      {isCardsPage && <p className="mt-4 text-green-500">Прочитать описание</p>}
     </div>
   );
 };
