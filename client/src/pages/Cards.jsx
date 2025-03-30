@@ -42,7 +42,7 @@ const Cards = () => {
   };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-[50px] pt-[30px] pb-[100px] sm:pb-0">
+    <div className="max-w-[1440px] mx-auto px-[10px] pt-[30px] pb-[100px] sm:pb-0">
       <h1 className="text-center font-semibold text-lg">Твои герои</h1>
       {loading && <p className="text-center text-md font-semibold mt-5">Загрузка...</p>}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3 mt-[20px]">
