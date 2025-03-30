@@ -38,7 +38,7 @@ const Quiz = ({ image, title, description, quizId, level }) => {
   return (
     <div
       onClick={startQuiz}
-      className="max-w-xs mx-auto h-[350px] bg-gray-800 rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-105 hover:shadow-xl"
+      className="max-w-xs mx-auto h-[370px] bg-gray-800 rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition-transform hover:scale-105 hover:shadow-xl"
     >
       <div className="relative">
         <img src={image} alt={title} className="w-full h-[200px] object-cover" />

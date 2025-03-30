@@ -7,8 +7,7 @@ const Deck = ({ selectedHero, setSelectedHero }) => {
   const [deck, setDeck] = useState([null, null, null]);
   const [usersDeck, setUsersDeck] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log("deck:", deck);
-  console.log("usersDeck:", usersDeck);
+
   const fetchUsersDeck = async () => {
     setLoading(true);
     try {
@@ -76,7 +75,7 @@ const Deck = ({ selectedHero, setSelectedHero }) => {
               setHeroToDeck(index);
               setSelectedHero(null);
             }}
-            className="w-30 h-40 border-2 border-blue-500 rounded-md flex items-center justify-center cursor-pointer"
+            className="w-20 h-30 sm:w-30 sm:h-40 border-2 border-blue-500 rounded-md flex items-center justify-center cursor-pointer"
           >
             {hero ? (
               <img className="w-full h-full rounded-md" src={hero.image} alt={hero.name} />

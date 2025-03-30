@@ -3,6 +3,7 @@ import Hero from "../components/common/Hero";
 import Deck from "../components/cards/Deck";
 import { axiosInstance } from "../utils/axios";
 import { GrCheckboxSelected } from "react-icons/gr";
+import HeroDescription from "../components/cards/HeroDescription";
 
 const Cards = () => {
   const [heroes, setHeroes] = useState([]);
@@ -67,26 +68,24 @@ const Cards = () => {
                 race={hero.race}
                 rarity={hero.rarity}
               />
-              <p onClick={() => toggleDescription(hero.description)} className="mt-2 text-green-500 text-center">
+              <p
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleDescription(hero);
+                }}
+                className="mt-2 text-white text-center"
+              >
                 Прочитать описание
               </p>
             </div>
           ))
         )}
       </div>
-      {isShowDescription && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm px-[20px]">
-          <div className="bg-white p-4 rounded-lg max-w-sm mx-auto">
-            <p className="text-sm font-medium italic text-black">{selectedHeroDescription}</p>
-            <button
-              onClick={() => setIsShowDescription(false)}
-              className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-md"
-            >
-              Закрыть
-            </button>
-          </div>
-        </div>
-      )}
+      <HeroDescription
+        isShowDescription={isShowDescription}
+        selectedHeroDescription={selectedHeroDescription}
+        toggleDescription={toggleDescription}
+      />
       <Deck selectedHero={selectedHero} setSelectedHero={setSelectedHero} />
     </div>
   );
