@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = ({ name, image, level, health, attack, defense }) => {
   return (
-    <div className="relative bg-gray-900 text-white p-2 rounded-lg shadow-md border-2 border-yellow-500 max-w-60 mx-auto text-center text-xs">
+    <div className="relative bg-gray-900 text-white p-2 rounded-lg shadow-md border-2 border-yellow-500 w-60 md:w-45 mx-auto text-center text-xs">
       {/* Заголовок карты */}
       <h2 className="text-sm font-bold text-yellow-400">{name}</h2>
 
