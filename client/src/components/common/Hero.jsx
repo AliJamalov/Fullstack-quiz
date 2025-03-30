@@ -13,10 +13,10 @@ const Hero = ({ name, image, level, health, attack, defense }) => {
 
       {/* Характеристики */}
       <div className="mt-2 grid grid-cols-2 gap-1 text-center">
-        <p className="bg-yellow-600 px-1 py-0.5 rounded-md font-bold">Lv: {level}</p>
-        <p className="bg-red-600 px-1 py-0.5 rounded-md font-bold">HP: {health}</p>
-        <p className="bg-blue-600 px-1 py-0.5 rounded-md font-bold">ATK: {attack}</p>
-        <p className="bg-green-600 px-1 py-0.5 rounded-md font-bold">DEF: {defense}</p>
+        <p className="bg-yellow-600 px-1 py-0.5 rounded-md font-medium text-xs">Lv: {level}</p>
+        <p className="bg-red-600 px-1 py-0.5 rounded-md font-medium text-xs">HP: {health}</p>
+        <p className="bg-blue-600 px-1 py-0.5 rounded-md font-medium text-xs">ATK: {attack}</p>
+        <p className="bg-green-600 px-1 py-0.5 rounded-md font-medium text-xs">DEF: {defense}</p>
       </div>
     </div>
   );
