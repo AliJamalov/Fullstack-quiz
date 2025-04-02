@@ -26,13 +26,6 @@ const Deck = ({ selectedHero, setSelectedHero }) => {
   }, []);
 
   const handleSaveDeckToDB = async () => {
-    const usersDeckIds = new Set(usersDeck.map((hero) => hero._id));
-    const isHeroAlreadyInDeck = deck.some((hero) => hero && usersDeckIds.has(hero._id));
-
-    if (isHeroAlreadyInDeck) {
-      toast.error("Эти герои уже в колоде!");
-      return;
-    }
     setSaveLoading(true);
     try {
       await axiosInstance.post("/users/save-deck", {
@@ -66,7 +59,7 @@ const Deck = ({ selectedHero, setSelectedHero }) => {
 
   return (
     <div className="flex flex-col items-center mt-7 sm:pb-[100px]">
-      <p>Твоя колода карт</p>
+      <p className="text-white font-medium">Твоя колода карт</p>
       <div className="flex items-center gap-2 mt-2">
         {deck.map((hero, index) => (
           <div
@@ -90,7 +83,7 @@ const Deck = ({ selectedHero, setSelectedHero }) => {
       <button
         onClick={handleSaveDeckToDB}
         disabled={saveLoading}
-        className="mt-3 p-2 bg-yellow-500 rounded-md cursor-pointer text-white text-md"
+        className="mt-3 p-2 bg-gray-900 rounded-md cursor-pointer text-white text-md"
       >
         {saveLoading ? "Загрузка" : "Сохранить колоду"}
       </button>

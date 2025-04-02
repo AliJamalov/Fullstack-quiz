@@ -60,7 +60,7 @@ const Profile = () => {
 
   return (
     <div className="max-w-[1440px] mx-auto px-[50px] pt-[20px] flex flex-col items-center">
-      <div onClick={logout} className="flex items-center gap-3 mb-4 bg-yellow-500 rounded-md px-2 py-1 cursor-pointer">
+      <div onClick={logout} className="flex items-center gap-3 mb-4 bg-gray-900 rounded-md px-2 py-1 cursor-pointer">
         <MdLogout color="white" size={25} />
         <p className="font-medium text-white text-md">Logout</p>
       </div>
@@ -74,7 +74,7 @@ const Profile = () => {
         </div>
 
         <div className="flex justify-end mt-1 ml-[90px]">
-          <TbMoodEdit onClick={() => inputRef?.current.click()} size={25} color="yellow" className="cursor-pointer" />
+          <TbMoodEdit onClick={() => inputRef?.current.click()} size={25} className="cursor-pointer text-gray-900" />
         </div>
 
         <input onChange={handleImageChange} accept="image/*" ref={inputRef} type="file" className="hidden" />
@@ -91,7 +91,7 @@ const Profile = () => {
           <button
             disabled={loading}
             className={`${
-              loading ? "bg-yellow-300" : "bg-yellow-500"
+              loading ? "bg-gray-800" : "bg-gray-900"
             } cursor-pointer text-white p-2 rounded-md w-full max-w-[300px]`}
             type="submit"
           >

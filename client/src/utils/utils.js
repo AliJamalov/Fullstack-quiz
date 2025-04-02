@@ -4,3 +4,9 @@ export const calculateStars = (score) => {
   if (score >= 1) return 1;
   return 0;
 };
+
+export const getRandomEmoji = () => {
+  const damageEmojis = ["💥", "⚔️", "🔥", "⚡"];
+  const randomEmoji = damageEmojis[Math.floor(Math.random() * damageEmojis.length)];
+  return randomEmoji;
+};

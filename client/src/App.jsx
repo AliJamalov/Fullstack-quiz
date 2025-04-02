@@ -8,7 +8,9 @@ import Quiz from "./pages/Quiz";
 import Leaderboard from "./pages/Leaderboard";
 import Cards from "./pages/Cards";
 import Profile from "./pages/Profile";
+import Store from "./pages/Store";
 import Navbar from "./components/layout/Navbar";
+import Arena from "./pages/Arena";
 import { useAuthStore } from "./store/authStore";
 import { ImSpinner9 } from "react-icons/im";
 import { Toaster } from "react-hot-toast";
@@ -16,7 +18,7 @@ import { Toaster } from "react-hot-toast";
 const App = () => {
   const location = useLocation();
 
-  const pathsToHide = ["/quiz"];
+  const pathsToHide = ["/quiz", "/arena"];
 
   const { checkAuth, checkingAuthLoading, user } = useAuthStore();
 
@@ -45,6 +47,8 @@ const App = () => {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/cards" element={<Cards />} />
         <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/arena" element={user ? <Arena /> : <Navigate to="/login" />} />
       </Routes>
       {!hideNavbar && <div className="sm:hidden">{user && <Navbar />}</div>}
       <Toaster />

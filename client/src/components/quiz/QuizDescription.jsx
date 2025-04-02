@@ -13,7 +13,7 @@ const QuizDescription = ({ isQuizStarted, quizTitle, quizDescription, startQuiz,
               startQuiz();
               fetchQuizesQuestions();
             }}
-            className="text-white bg-yellow-500 py-3 px-5 cursor-pointer rounded"
+            className="text-white bg-gray-900 py-3 px-5 cursor-pointer rounded"
           >
             Начать викторину
           </button>

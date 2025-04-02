@@ -4,15 +4,14 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import { connectDB } from "./lib/db.js";
+import { app, server } from "./lib/socket.js";
 
 import authRouter from "./routes/auth.routes.js";
 import questionRouter from "./routes/question.routes.js";
 import quizRouter from "./routes/quiz.routes.js";
-import resultRouter from "./routes/results.routes.js";
 import userRouter from "./routes/user.routes.js";
 import heroRouter from "./routes/hero.routes.js";
-
-const app = express();
+import storeRouter from "./routes/store.routes.js";
 
 app.use(express.json());
 app.use(cookieParser());
@@ -29,15 +28,15 @@ app.use(
 app.use("/api/auth", authRouter);
 app.use("/api/questions", questionRouter);
 app.use("/api/quizes", quizRouter);
-app.use("/api/results", resultRouter);
 app.use("/api/users", userRouter);
 app.use("/api/heroes", heroRouter);
+app.use("/api/store", storeRouter);
 
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is running on http://localhost:" + PORT);
   connectDB();
 });
