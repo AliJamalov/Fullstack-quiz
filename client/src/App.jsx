@@ -37,7 +37,7 @@ const App = () => {
   const hideNavbar = pathsToHide.some((path) => location.pathname.startsWith(path));
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-400 to-gray-600">
+    <div className="min-h-screen bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500">
       <Routes>
         <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />

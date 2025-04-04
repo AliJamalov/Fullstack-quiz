@@ -157,6 +157,7 @@ const Arena = () => {
 
     socket.emit("defend", { gameId, defendHeroId });
     hideDamageMessage();
+    handleScroll();
   };
 
   const getPlayerHeroes = () => {
@@ -198,6 +199,10 @@ const Arena = () => {
     setTimeout(() => {
       setDamageMessage("");
     }, 4000);
+  };
+
+  const handleScroll = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

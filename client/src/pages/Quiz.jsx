@@ -144,7 +144,7 @@ const Quiz = () => {
       )}
       {loading ? (
         <div className="flex items-center justify-center">
-          <ImSpinner9 color="yellow" size={35} className="animate-spin" />
+          <ImSpinner9 size={35} className="animate-spin" />
         </div>
       ) : (
         <QuizDescription
