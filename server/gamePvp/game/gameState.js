@@ -1,11 +1,9 @@
 export const games = {};
 
-// Проверка здоровья героев - все ли герои мертвы
 export const checkAllHeroesDead = (heroes) => {
   return heroes.every((hero) => hero.health <= 0);
 };
 
-// Проверка окончания игры
 export const checkGameOver = (game) => {
   const playerIds = Object.keys(game.players);
 
@@ -13,7 +11,7 @@ export const checkGameOver = (game) => {
     if (checkAllHeroesDead(game.players[playerId].heroes)) {
       return {
         isOver: true,
-        winnerId: playerIds.find((id) => id !== playerId), // Победитель - тот, у кого есть живые герои
+        winnerId: playerIds.find((id) => id !== playerId),
       };
     }
   }
@@ -21,7 +19,6 @@ export const checkGameOver = (game) => {
   return { isOver: false };
 };
 
-// Переключение хода
 export const switchTurn = (game) => {
   const playerIds = Object.keys(game.players);
 

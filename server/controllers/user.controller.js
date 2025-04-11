@@ -1,5 +1,6 @@
 import { calculateStars } from "../../client/src/utils/utils.js";
 import Hero from "../models/hero.model.js";
+import User from "../models/user.model.js";
 
 export const updateUserProfile = async (req, res) => {
   const { username, profilePic } = req.body;
@@ -143,6 +144,21 @@ export const fetchUserDeck = async (req, res) => {
       return res.status(404).json({ message: "Колода не найдена" });
     }
     return res.status(200).json(deck);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Ошибка на сервере" });
+  }
+};
+
+export const fetchUserRankings = async (req, res) => {
+  try {
+    const leaderBoard = await User.find({}).sort({ wins: -1 }).limit(5).select("username wins");
+
+    if (leaderBoard.length === 0) {
+      return res.status(400).json({ message: "Игроки не найдены" });
+    }
+
+    return res.status(200).json(leaderBoard);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Ошибка на сервере" });

@@ -5,6 +5,7 @@ import {
   fetchUserCards,
   saveUserDeck,
   fetchUserDeck,
+  fetchUserRankings,
 } from "../controllers/user.controller.js";
 import { protectRoute } from "../middlewares/protectRoute.js";
 
@@ -19,5 +20,7 @@ router.get("/user-cards", protectRoute, fetchUserCards);
 router.post("/save-deck", protectRoute, saveUserDeck);
 
 router.get("/get-deck", protectRoute, fetchUserDeck);
+
+router.get("/rankings", fetchUserRankings);
 
 export default router;

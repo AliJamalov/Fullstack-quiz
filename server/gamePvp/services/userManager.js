@@ -1,6 +1,5 @@
 import User from "../../models/user.model.js";
 
-// Получение колоды пользователя
 export const getUserDeck = async (userId) => {
   try {
     const user = await User.findById(userId).populate("deck").exec();
@@ -28,15 +27,12 @@ export const getUserDeck = async (userId) => {
   }
 };
 
-// Обновление статистики игроков после окончания игры
 export const updatePlayerStats = async (winnerId, loserId) => {
   try {
-    // Обновляем победителя
     await User.findByIdAndUpdate(winnerId, {
       $inc: { wins: 1, experiences: 20, coins: 15 },
     });
 
-    // Обновляем проигравшего
     await User.findByIdAndUpdate(loserId, {
       $inc: { losses: 1, experiences: 5 },
     });

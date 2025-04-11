@@ -6,22 +6,16 @@ export const opponents = {};
 
 const connectionHandler = (io, socket) => {
   const userId = socket.handshake.query.userId;
-  console.log("Получен ID пользователя:", userId);
 
-  // Сохраняем соединение
   clientConnections[userId] = socket.id;
-  console.log(`Сохранено соединение для пользователя ${userId}: ${socket.id}`);
 
-  // Уведомляем клиента, что соединение установлено
   socket.emit("connection_established", {
     userId,
     message: "Подключено к игровому серверу",
   });
 
-  // Проверяем, не находится ли пользователь уже в игре
   const existingGame = getGameForPlayer(userId);
   if (existingGame) {
-    console.log(`Пользователь ${userId} уже в игре ${existingGame.gameId}`);
     const opponentId = opponents[userId];
 
     socket.emit("game_started", {
@@ -34,12 +28,10 @@ const connectionHandler = (io, socket) => {
     return;
   }
 
-  // Уведомляем клиента о поиске соперника
   socket.emit("looking_for_match", {
     message: "Поиск соперника...",
   });
 
-  // Ищем соперника
   matchPlayers(io, userId, opponents)
     .then((matchResult) => {
       if (!matchResult) {
@@ -52,9 +44,6 @@ const connectionHandler = (io, socket) => {
         socket.emit("match_error", { message: matchResult.error });
         return;
       }
-
-      const { gameId, firstPlayerId, secondPlayerId } = matchResult;
-      console.log(`Найден матч! Игра ${gameId}: ${firstPlayerId} vs ${secondPlayerId}`);
     })
     .catch((error) => {
       console.error("Ошибка при сопоставлении игроков:", error);

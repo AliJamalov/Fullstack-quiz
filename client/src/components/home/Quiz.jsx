@@ -31,7 +31,7 @@ const Quiz = ({ image, title, description, quizId, level }) => {
     if (!isLocked) {
       navigate(`/quiz/${quizId}`);
     } else {
-      toast.error("You have to pass the previous quiz first!");
+      toast.error("Ты должен пройти предыдущую викторину!");
     }
   };
 

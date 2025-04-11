@@ -3,7 +3,6 @@ import http from "http";
 import express from "express";
 import connectionHandler from "../gamePvp/connections.js";
 
-// Импорт обработчиков событий
 import attackHandler from "../gamePvp/handlers/attackHandler.js";
 import defendHandler from "../gamePvp/handlers/defendHandler.js";
 import disconnectHandler from "../gamePvp/handlers/disconnectHandler.js";

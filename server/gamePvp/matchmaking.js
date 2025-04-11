@@ -5,9 +5,6 @@ import { games } from "./game/gameState.js";
 let playerIdsWaitingMatch = [];
 
 export const matchPlayers = async (io, playerId, opponents) => {
-  console.log(`Добавляем игрока ${playerId} в очередь ожидания`);
-
-  // Проверяем, есть ли уже игрок в очереди ожидания
   if (playerIdsWaitingMatch.includes(playerId)) {
     console.log(`Игрок ${playerId} уже в очереди ожидания`);
     return null;
@@ -25,18 +22,15 @@ export const matchPlayers = async (io, playerId, opponents) => {
   opponents[firstPlayerId] = secondPlayerId;
   opponents[secondPlayerId] = firstPlayerId;
 
-  // Создаем новую игру
   const result = await createGame(firstPlayerId, secondPlayerId);
 
   if (result.error) {
     console.error(`Ошибка при создании игры: ${result.error}`);
-    // В случае ошибки возвращаем игроков в очередь
     playerIdsWaitingMatch.unshift(secondPlayerId);
     playerIdsWaitingMatch.unshift(firstPlayerId);
     return { error: result.error };
   }
 
-  // Отправляем обоим игрокам уведомление о начале игры
   const firstPlayerSocket = clientConnections[firstPlayerId];
   const secondPlayerSocket = clientConnections[secondPlayerId];
 
@@ -69,7 +63,6 @@ export const matchPlayers = async (io, playerId, opponents) => {
   };
 };
 
-// Удаление игрока из очереди ожидания
 export const removePlayerFromWaitingQueue = (playerId) => {
   const indexInWaitingQueue = playerIdsWaitingMatch.indexOf(playerId);
   if (indexInWaitingQueue !== -1) {
